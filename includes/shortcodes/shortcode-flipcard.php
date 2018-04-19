@@ -27,7 +27,7 @@ if ( ! function_exists( 'tailor_shortcode_flipcard' ) ) {
             'data'          =>  array(),
         );
 
-        if ( is_numeric( $atts['image'] ) ) {
+        if ( isset($atts['image']) && is_numeric( $atts['image'] ) ) {
             $html_atts['class'][] = 'has-header-image';
         }
 
@@ -48,7 +48,7 @@ if ( ! function_exists( 'tailor_shortcode_flipcard' ) ) {
 
         $outer_html = "<div {$html_atts}>%s</div>";
         $inner_html = '<header class="tailor-card__header">' . $title . '</header>' .
-            '<div class="tailor-card__content">%s</div>';
+            '<div class="tailor-flipcard__content">%s</div>';
         $content = do_shortcode( $content );
         $html = sprintf( $outer_html, sprintf( $inner_html, $content ) );
 

@@ -202,7 +202,7 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
                 'description'       =>  __( 'Add a flipcard' ),
                 'badge'             =>  __( 'Custom' ),
                 'type'              =>  'wrapper',
-                'child_container'   =>  '.tailor-custom-wrapper__content',
+                'child_container'   =>  '.tailor-flipcard__content',
             ) );
 
 		    $element_manager->add_element( 'tailor_custom_container', array(
