@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Tailor custom content element class.
+ * Tailor custom wrapper element class.
  */
 
 if ( ! defined( 'WPINC' ) ) {
     die;
 }
 
-if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Custom_Content_Element' ) ) {
+if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Flipcard_Element' ) ) {
 
     /**
-     * Tailor custom content element class.
+     * Tailor custom wrapper element class.
      */
-    class Tailor_Custom_Content_Element extends Tailor_Element {
+    class Tailor_Flipcard_Element extends Tailor_Element {
 
 	    /**
 	     * Registers element settings, sections and controls.
@@ -40,45 +40,30 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Custom_Content_
 		    $priority = 0;
 
 		    // Add as many custom settings as you like..
-		    $this->add_setting( 'setting_1', array(
+		    $this->add_setting( 'title', array(
 			    'sanitize_callback'     =>  'tailor_sanitize_text',
-			    'default'               =>  'The default value for setting 1',
+			    'default'               =>  'Default title',
 		    ) );
-		    $this->add_control( 'setting_1', array(
-			    'label'                 =>  __( 'Setting 1' ),
+		    $this->add_control( 'title', array(
+			    'label'                 =>  __( 'Title' ),
 			    'type'                  =>  'text',
 			    'section'               =>  'general',
 			    'priority'              =>  $priority += 10,
 		    ) );
 
-		    $this->add_setting( 'setting_2', array(
+		    $this->add_setting( 'description', array(
 			    'sanitize_callback'     =>  'tailor_sanitize_text',
 		    ) );
-		    $this->add_control( 'setting_2', array(
-			    'label'                 =>  __( 'Setting 2' ),
+		    $this->add_control( 'description', array(
+			    'label'                 =>  __( 'Description' ),
 			    'type'                  =>  'text',
 			    'section'               =>  'general',
 			    'priority'              =>  $priority += 10,
 		    ) );
 
-		    // This allows you to also add one of many standard control types..
-		    $general_control_types = array( 'style' );
-
-		    // This allows you to alter values for standard controls and settings..
-		    $general_control_arguments = array(
-			    'style'                 =>  array(
-				    'control'               =>  array(
-					    'choices'               =>  array(
-						    ''                      =>  __( 'None' ),
-						    'style-1'               =>  __( 'Style 1' ),
-						    'style-2'               =>  __( 'Style 2' ),
-						    'style-3'               =>  __( 'Style 3' ),
-					    ),
-				    ),
-			    ),
-		    );
-
-		    // Note the starting priority is passed to the function
+		    // See the custom content element for an example of how to use/modify standard control types
+		    $general_control_types = array();
+		    $general_control_arguments = array();
 		    tailor_control_presets( $this, $general_control_types, $general_control_arguments, $priority );
 
 		    // Standard color settings..
@@ -122,29 +107,8 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Custom_Content_
 		    $css_rules = array();
 		    $excluded_control_types = array();
 
-		    // Generate CSS rules for standard settings
+		    // Just generate the default setting CSS
 		    $css_rules = tailor_css_presets( $css_rules, $atts, $excluded_control_types );
-
-		    if (isset($atts['style'])) {
-                // Create your own
-                if ('style-1' == $atts['style']) {
-                    $color = 'red';
-                } else if ('style-2' == $atts['style']) {
-                    $color = 'blue';
-                } else if ('style-3' == $atts['style']) {
-                    $color = 'green';
-                }
-            }
-
-		    if ( ! empty( $color ) ) {
-			    $css_rules[] = array(
-				    'selectors'         =>  array( '' ),
-				    'declarations'      =>  array(
-					    'background-color'  =>  $color,
-				    ),
-			    );
-		    }
-
 		    return $css_rules;
 	    }
     }

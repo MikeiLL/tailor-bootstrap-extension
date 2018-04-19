@@ -21,7 +21,7 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Test_Element' )
 	     * @access protected
 	     */
 	    protected function register_controls() {
-		    
+
 		    $this->add_section( 'general', array(
 			    'title'                 =>  __( 'General' ),
 			    'priority'              =>  10,
