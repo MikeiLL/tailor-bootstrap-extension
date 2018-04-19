@@ -21,7 +21,7 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Custom_Content_
 	     * @access protected
 	     */
 	    protected function register_controls() {
-		    
+
 		    $this->add_section( 'general', array(
 			    'title'                 =>  __( 'General' ),
 			    'priority'              =>  10,
@@ -60,7 +60,7 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Custom_Content_
 			    'section'               =>  'general',
 			    'priority'              =>  $priority += 10,
 		    ) );
-		    
+
 		    // This allows you to also add one of many standard control types..
 		    $general_control_types = array( 'style' );
 
@@ -77,7 +77,7 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Custom_Content_
 				    ),
 			    ),
 		    );
-		    
+
 		    // Note the starting priority is passed to the function
 		    tailor_control_presets( $this, $general_control_types, $general_control_arguments, $priority );
 
@@ -125,17 +125,17 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Custom_Content_
 		    // Generate CSS rules for standard settings
 		    $css_rules = tailor_css_presets( $css_rules, $atts, $excluded_control_types );
 
-		    // Create your own
-		    if ( 'style-1' == $atts['style'] ) {
-			    $color = 'red';
-		    }
-		    else if ( 'style-2' == $atts['style'] ) {
-			    $color = 'blue';
-		    }
-		    else if ( 'style-3' == $atts['style'] ) {
-			    $color = 'green';
-		    }
-		    
+		    if (isset($atts['style'])) {
+                // Create your own
+                if ('style-1' == $atts['style']) {
+                    $color = 'red';
+                } else if ('style-2' == $atts['style']) {
+                    $color = 'blue';
+                } else if ('style-3' == $atts['style']) {
+                    $color = 'green';
+                }
+            }
+            
 		    if ( ! empty( $color ) ) {
 			    $css_rules[] = array(
 				    'selectors'         =>  array( '' ),
@@ -144,7 +144,7 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Custom_Content_
 				    ),
 			    );
 		    }
-		    
+
 		    return $css_rules;
 	    }
     }
