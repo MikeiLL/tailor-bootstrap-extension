@@ -23,19 +23,26 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Flipcard_Elemen
          */
         protected function register_controls() {
 
+            $priority = 0;
+
             $this->add_section( 'general', array(
-                'title'                 =>  __( 'General', 'tailor' ),
-                'priority'              =>  10,
+                'title'                 =>  __( 'Front', 'tailor' ),
+                'priority'              =>  $priority += 10,
+            ) );
+
+            $this->add_section( 'back', array(
+                'title'                 =>  __( 'Back', 'tailor' ),
+                'priority'              =>  $priority += 10,
             ) );
 
             $this->add_section( 'colors', array(
                 'title'                 =>  __( 'Colors', 'tailor' ),
-                'priority'              =>  20,
+                'priority'              =>  $priority += 10,
             ) );
 
             $this->add_section( 'attributes', array(
                 'title'                 =>  __( 'Attributes', 'tailor' ),
-                'priority'              =>  30,
+                'priority'              =>  $priority += 10,
             ) );
 
             $priority = 0;
@@ -55,6 +62,22 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Flipcard_Elemen
                 ),
             );
             tailor_control_presets( $this, $general_control_types, $general_control_arguments, $priority );
+
+            // Add as many custom settings as you like..
+            $this->add_setting( 'back_title', array(
+                'sanitize_callback'     =>  'tailor_sanitize_text',
+                'default'               =>  'Card Back title',
+            ) );
+            $this->add_control( 'back_title', array(
+                'label'                 =>  __( 'Back Title' ),
+                'type'                  =>  'text',
+                'section'               =>  'back',
+                'priority'              =>  $priority += 10,
+            ) );
+
+            $card_back_control_types = array();
+            $card_back_control_arguments = array();
+            tailor_control_presets( $this, $card_back_control_types, $card_back_control_arguments, $priority );
 
             $priority = 0;
             $color_control_types = array(
@@ -102,6 +125,7 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Flipcard_Elemen
          * @return array
          */
         public function generate_css( $atts = array() ) {
+
             $css_rules = array();
             $excluded_control_types = array(
                 'padding',

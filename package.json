@@ -1,0 +1,29 @@
+{
+  "name": "tailor-bs4-extension",
+  "version": "1.0.0",
+  "description": "Extend Tailor Page Builder with some Bootstrap 4 Elements.",
+  "main": "canvas.js",
+  "scripts": {
+    "test": "console.log('test')",
+    "start": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeiLL/tailor-bs4-extension.git"
+  },
+  "keywords": [
+    "bootstrap",
+    "'page",
+    "builder'",
+    "tailor",
+    "extension",
+    "wordpress"
+  ],
+  "author": "Mike iLL",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/MikeiLL/tailor-bs4-extension/issues"
+  },
+  "homepage": "https://github.com/MikeiLL/tailor-bs4-extension#readme"
+}

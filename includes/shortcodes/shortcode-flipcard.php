@@ -44,12 +44,20 @@ if ( ! function_exists( 'tailor_shortcode_flipcard' ) ) {
         $html_atts['class'] = implode( ' ', (array) $html_atts['class'] );
         $html_atts = tailor_get_attributes( $html_atts );
 
+        ob_start();
+
         $title = ! empty( $atts['title'] ) ? '<h3 class="tailor-card__title">' . esc_html( (string) $atts['title'] ) . '</h3>' : '';
+mz_pr($atts['back_title']);
 
         $outer_html = "<div {$html_atts}>%s</div>";
         $inner_html = '<header class="tailor-card__header">' . $title . '</header>' .
             '<div class="tailor-flipcard__content">%s</div>';
-        $content = do_shortcode( $content );
+
+        tailor_partial( 'content', 'custom', array(
+            'item_content' => $content
+        ));
+
+        $content = ob_get_clean();
         $html = sprintf( $outer_html, sprintf( $inner_html, $content ) );
 
         /**

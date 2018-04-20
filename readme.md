@@ -36,3 +36,6 @@ Note: Tailor version 1.7.0 (or newer) is required to use this sample extension.
 ### 1.0.0
 
 * Initial version
+
+# Notes
+[Webpack Setup Resource](https://github.com/rheinardkorf/webpack-wordpress-demo/tree/01_npm_webpack)

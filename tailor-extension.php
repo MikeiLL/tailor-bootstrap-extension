@@ -200,7 +200,7 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
             $element_manager->add_element( 'tailor_flipcard', array(
                 'label'             =>  __( 'Flipcard' ),
                 'description'       =>  __( 'Add a flipcard' ),
-                'badge'             =>  __( 'Custom' ),
+                'badge'             =>  __( 'Intensity' ),
                 'type'              =>  'wrapper',
                 'child_container'   =>  '.tailor-flipcard__content',
             ) );
@@ -244,7 +244,7 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
 	    public function enqueue_scripts() {
 		    wp_enqueue_script(
 			    'tailor-custom-canvas',
-			    $this->plugin_url() . 'assets/js/dist/canvas' . ( SCRIPT_DEBUG ? '.js' : '.min.js' ),
+			    $this->plugin_url() . 'assets/js/' . ( SCRIPT_DEBUG ? 'src/canvas/canvas.js' : 'dist/canvas.min.js' ),
 			    array( 'tailor-canvas' ),
 			    $this->version(),
 			    true
