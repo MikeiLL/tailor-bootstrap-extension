@@ -1,6 +1,6 @@
 <?php
 
-if ( ! function_exists( 'tailor_shortcode_flipcard' ) ) {
+if ( ! function_exists( 'tailor_shortcode_flipcard_element' ) ) {
 
     /**
      * Defines the shortcode rendering function for the flipcard
@@ -11,6 +11,7 @@ if ( ! function_exists( 'tailor_shortcode_flipcard' ) ) {
      * @return string
      */
     function tailor_shortcode_flipcard_element( $atts, $content = null, $tag ) {
+
 
         /**
          * Filter the default shortcode attributes.
@@ -45,20 +46,23 @@ if ( ! function_exists( 'tailor_shortcode_flipcard' ) ) {
         $html_atts = tailor_get_attributes( $html_atts );
 
         ob_start();
-
-        $title = ! empty( $atts['title'] ) ? '<h3 class="tailor-card__title">' . esc_html( (string) $atts['title'] ) . '</h3>' : '';
-mz_pr($atts['back_title']);
-
+        mz_pr( $atts );
         $outer_html = "<div {$html_atts}>%s</div>";
-        $inner_html = '<header class="tailor-card__header">' . $title . '</header>' .
-            '<div class="tailor-flipcard__content">%s</div>';
 
-        tailor_partial( 'content', 'custom', array(
-            'item_content' => $content
+        //$inner_html = '<header class="tailor-card__header">' . $title . '</header>';
+
+        tailor_partial( 'content', 'flipcard', array(
+            'atts' => $atts,
+            'html_atts' => $html_atts,
+            'test_key' => 'i am here'
         ));
 
+
         $content = ob_get_clean();
+        $inner_html = '<div class="tailor-flipcard__content">%s</div>';
+
         $html = sprintf( $outer_html, sprintf( $inner_html, $content ) );
+
 
         /**
          * Filter the HTML for the element.

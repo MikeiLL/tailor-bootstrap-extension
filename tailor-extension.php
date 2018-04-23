@@ -103,7 +103,7 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
 	    public function init() {
 		    if (
 			    ! class_exists( 'Tailor' ) ||                               // Tailor is not active, or
-			    ! version_compare( tailor()->version(), '1.7.0', '>=' )     // An unsupported version is being used
+			    ! version_compare( tailor()->version(), '1.8.2', '>=' )     // An unsupported version is being used
 		    ) {
 			    add_action( 'admin_notices', array( $this, 'display_version_notice' ) );
 			    return;
@@ -121,7 +121,7 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
 	    public function display_version_notice() {
 		    printf(
 			    '<div class="notice notice-warning is-dismissible"><p>%s</p></div>',
-			    __( 'Please ensure that Tailor 1.7.0 (or newer) is active to use the sample extension.' )
+			    __( 'Please ensure that Tailor 1.8.2 (or newer) is active to use the sample extension.' )
 		    );
 	    }
 
@@ -180,23 +180,6 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
 	     * @param $element_manager Tailor_Elements
 	     */
 	    public function register_elements( $element_manager ) {
-
-		    $element_manager->add_element( 'tailor_custom_content', array(
-			    'label'             =>  __( 'Custom content' ),
-			    'description'       =>  __( 'A custom content element' ),
-			    'badge'             =>  __( 'Custom' ),
-			    // 'class_name'       =>  'Tailor_Custom_Element',
-			    // 'type'             =>  'container', 'wrapper', 'child', 'content',
-		    ) );
-
-            $element_manager->add_element( 'tailor_custom_wrapper', array(
-                'label'             =>  __( 'Custom wrapper' ),
-                'description'       =>  __( 'A custom wrapper element' ),
-                'badge'             =>  __( 'Custom' ),
-                'type'              =>  'wrapper',
-                'child_container'   =>  '.tailor-custom-wrapper__content',
-            ) );
-
             $element_manager->add_element( 'tailor_flipcard', array(
                 'label'             =>  __( 'Flipcard' ),
                 'description'       =>  __( 'Add a flipcard' ),
@@ -204,26 +187,6 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
                 'type'              =>  'wrapper',
                 'child_container'   =>  '.tailor-flipcard__content',
             ) );
-
-		    $element_manager->add_element( 'tailor_custom_container', array(
-			    'label'             =>  __( 'Custom container' ),
-			    'description'       =>  __( 'A custom container element' ),
-			    'badge'             =>  __( 'Custom' ),
-			    'type'              =>  'container',
-			    'child'             =>  'tailor_custom_child',
-		    ) );
-
-		    $element_manager->add_element( 'tailor_custom_child', array(
-			    'label'             =>  __( 'Custom child' ),
-			    'type'              =>  'child',
-		    ) );
-
-		    $element_manager->add_element( 'tailor_test', array(
-			    'label'             =>  __( 'All controls' ),
-			    'description'       =>  __( 'Contains all control types' ),
-			    'badge'             =>  __( 'Custom' ),
-		    ) );
-
 	    }
 
 	    /**

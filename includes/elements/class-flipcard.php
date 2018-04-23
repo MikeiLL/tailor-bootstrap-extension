@@ -25,7 +25,7 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Flipcard_Elemen
 
             $priority = 0;
 
-            $this->add_section( 'general', array(
+            $this->add_section( 'front', array(
                 'title'                 =>  __( 'Front', 'tailor' ),
                 'priority'              =>  $priority += 10,
             ) );
@@ -35,42 +35,104 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Flipcard_Elemen
                 'priority'              =>  $priority += 10,
             ) );
 
-            $this->add_section( 'colors', array(
-                'title'                 =>  __( 'Colors', 'tailor' ),
-                'priority'              =>  $priority += 10,
-            ) );
-
-            $this->add_section( 'attributes', array(
-                'title'                 =>  __( 'Attributes', 'tailor' ),
-                'priority'              =>  $priority += 10,
-            ) );
-
             $priority = 0;
 
-            $general_control_types = array(
-                'title',
-                'horizontal_alignment',
-                'horizontal_alignment_tablet',
-                'horizontal_alignment_mobile',
-                'image',
-            );
-            $general_control_arguments = array(
-                'title'                 =>  array(
-                    'setting'               =>  array(
-                        'default'               =>  $this->label,
-                    ),
-                ),
-            );
-            tailor_control_presets( $this, $general_control_types, $general_control_arguments, $priority );
+
 
             // Add as many custom settings as you like..
+            $this->add_setting( 'title', array(
+                'sanitize_callback'     =>  'tailor_sanitize_text',
+                'default'               =>  'Card Front title',
+            ) );
+            $this->add_control( 'title', array(
+                'label'                 =>  __( 'Title' ),
+                'type'                  =>  'text',
+                'section'               =>  'front',
+                'priority'              =>  $priority += 10,
+            ) );
             $this->add_setting( 'back_title', array(
                 'sanitize_callback'     =>  'tailor_sanitize_text',
                 'default'               =>  'Card Back title',
             ) );
             $this->add_control( 'back_title', array(
-                'label'                 =>  __( 'Back Title' ),
+                'label'                 =>  __( 'Title' ),
                 'type'                  =>  'text',
+                'section'               =>  'back',
+                'priority'              =>  $priority += 10,
+            ) );
+
+            $this->add_setting( 'front_image', array(
+                'default'               =>  '',
+            ) );
+            $this->add_control( 'Front_image', array(
+                'label'                 =>  __( 'Image' ),
+                'type'                  =>  'image',
+                'section'               =>  'front',
+                'priority'              =>  $priority += 10,
+            ) );
+            $this->add_setting( 'back_image', array(
+                'default'               =>  '',
+            ) );
+            $this->add_control( 'back_image', array(
+                'label'                 =>  __( 'Image' ),
+                'type'                  =>  'image',
+                'section'               =>  'back',
+                'priority'              =>  $priority += 10,
+            ) );
+
+            $this->add_setting( 'front_background_color', array(
+                'default'               =>  '',
+            ) );
+            $this->add_control( 'front_background_color', array(
+                'label'                 =>  __( 'Background Color' ),
+                'type'                  =>  'colorpicker',
+                'section'               =>  'front',
+                'priority'              =>  $priority += 10,
+            ) );
+            $this->add_setting( 'back_background_color', array(
+                'default'               =>  '',
+            ) );
+            $this->add_control( 'back_background_color', array(
+                'label'                 =>  __( 'Background Color' ),
+                'type'                  =>  'colorpicker',
+                'section'               =>  'back',
+                'priority'              =>  $priority += 10,
+            ) );
+            $this->add_setting( 'front_background_image', array(
+                'default'               =>  '',
+            ) );
+            $this->add_control( 'front_background_image', array(
+                'label'                 =>  __( 'Background Image' ),
+                'type'                  =>  'image',
+                'section'               =>  'front',
+                'priority'              =>  $priority += 10,
+            ) );
+            $this->add_setting( 'front_text_body', array(
+                'sanitize_callback'     =>  'tailor_sanitize_text',
+                'default'               =>  'I am some words',
+            ) );
+            $this->add_control( 'front_text_body', array(
+                'label'                 =>  __( 'Background Title' ),
+                'type'                  =>  'textarea',
+                'section'               =>  'front',
+                'priority'              =>  $priority += 10,
+            ) );
+            $this->add_setting( 'back_background_image', array(
+                'default'               =>  '',
+            ) );
+            $this->add_control( 'back_background_image', array(
+                'label'                 =>  __( 'Background Image' ),
+                'type'                  =>  'image',
+                'section'               =>  'back',
+                'priority'              =>  $priority += 10,
+            ) );
+            $this->add_setting( 'back_text_body', array(
+                'sanitize_callback'     =>  'tailor_sanitize_text',
+                'default'               =>  'I am some words',
+            ) );
+            $this->add_control( 'back_text_body', array(
+                'label'                 =>  __( 'Background Title' ),
+                'type'                  =>  'textarea',
                 'section'               =>  'back',
                 'priority'              =>  $priority += 10,
             ) );

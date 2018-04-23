@@ -9,12 +9,12 @@ console.log('this is one');
 	ElementAPI.onRender( 'tailor_flipcard', function( atts, model ) {
 
 		// Do something with the current attributes or element model
-		//console.log( atts );
-		//console.log( model );
+		console.log( atts );
+		console.log( model );
 
 		// Or update the DOM (the function is scoped to the element view)
 		console.log( this.el );
-    console.log('this is this');
+    console.log('this is onRender');
 		//console.log( this.$el );
     } );
 
@@ -25,7 +25,7 @@ console.log('this is one');
 		this.el.classList.add( 'custom-background-color' );
 		this.$el.css( { 'background-color' : to } );
 
-    console.log('this is this');
+    console.log('this is onChange');
 		console.log(this);
 
     console.log('that was this');
