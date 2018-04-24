@@ -22,6 +22,7 @@ if ( ! function_exists( 'tailor_shortcode_flipcard_element' ) ) {
          */
         $default_atts = apply_filters( 'tailor_shortcode_default_atts_' . $tag, array() );
         $atts = shortcode_atts( $default_atts, $atts, $tag );
+        $atts['class'] = isset($atts['class']) ? $atts['class'] : 'tailor-bs4-flipcard';
         $html_atts = array(
             'id'            =>  empty( $atts['id'] ) ? null : $atts['id'],
             'class'         =>  explode( ' ', "tailor-element tailor-card {$atts['class']}" ),
@@ -41,25 +42,25 @@ if ( ! function_exists( 'tailor_shortcode_flipcard_element' ) ) {
          * @param array $atts
          * @param string $tag
          */
+        $html_atts['class'] = isset($html_atts['class']) ? $html_atts['class'] : 'tailor-bs4-flipcard';
         $html_atts = apply_filters( 'tailor_shortcode_html_attributes', $html_atts, $atts, $tag );
         $html_atts['class'] = implode( ' ', (array) $html_atts['class'] );
         $html_atts = tailor_get_attributes( $html_atts );
-
         ob_start();
-        mz_pr( $atts );
-        $outer_html = "<div {$html_atts}>%s</div>";
 
-        //$inner_html = '<header class="tailor-card__header">' . $title . '</header>';
-
-        tailor_partial( 'content', 'flipcard', array(
+        tailor_partial( 'content', 'test', array(
             'atts' => $atts,
             'html_atts' => $html_atts,
             'test_key' => 'i am here'
         ));
 
+        $outer_html = "Outer Here <div {$html_atts}>%s</div>";
+
+        // $inner_html = '<header class="tailor-card__header">' . $atts['heading'] . '</header>';
+
+        $inner_html = 'This is inner <div class="tailor-flipcard__content">%s</div>';
 
         $content = ob_get_clean();
-        $inner_html = '<div class="tailor-flipcard__content">%s</div>';
 
         $html = sprintf( $outer_html, sprintf( $inner_html, $content ) );
 
@@ -77,10 +78,10 @@ if ( ! function_exists( 'tailor_shortcode_flipcard_element' ) ) {
          * @param string $content
          * @param string $tag
          */
-        $html = apply_filters( 'tailor_shortcode_html', $html, $outer_html, $inner_html, $html_atts, $atts, $content, $tag );
+        $html = apply_filters( 'tailor_flipcard', $html, $outer_html, $inner_html, $html_atts, $atts, $content, $tag );
 
         return $html;
     }
 
-    add_shortcode( 'tailor_flipcard', 'tailor_shortcode_flipcard_element' );
+    add_shortcode( 'tailor_flipcard_qwerty', 'tailor_shortcode_flipcard_element' );
 }

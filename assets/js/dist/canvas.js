@@ -11,10 +11,11 @@ console.log('must be in debug mode two');
 	} );
 
 	// Do something when the element renders
-	ElementAPI.onRender( 'tailor_custom_wrapper', function( atts, model ) {
+	ElementAPI.onRender( 'tailor_flipcard_qwerty', function( atts, model ) {
+		var $el = this.$el;
 		console.log( 'Do something with or to the element when it renders' );
-		//console.log( atts );
-		//console.log( model );
+		console.log( atts );
+		console.log( model );
 		console.log( this.el ); // The element node
 		console.log( this.$el );
     } );

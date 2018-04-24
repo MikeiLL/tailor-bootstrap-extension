@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Plugin Name: Tailor - Sample extension
+ * Plugin Name: Tailor Bootstrap 4 Extensions
  * Plugin URI: http://www.gettailor.com
- * Description: A sample Tailor extension.
+ * Description: Bootstrap 4 elements for Tailor.
  * Version: 1.1.0
- * Author: Andrew Worsfold
- * Author URI:  http://www.andrewworsfold.com
- * Text Domain: tailor-extension
+ * Author: Mike iLL
+ * Author URI:  http://www.mzoo.org
+ * Text Domain: tailor-bootstrap
  */
 
 if ( ! defined( 'WPINC' ) ) {
@@ -19,7 +19,7 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
     /**
      * Tailor Extension class.
      */
-    class Tailor_Extension {
+    class Tailor_Bootstrap_Extension {
 
         /**
          * Tailor Extension instance.
@@ -159,19 +159,8 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
 	     * Loads and registers the new Tailor elements and shortcodes.
 	     */
 	    public function load_elements() {
-		    require_once $this->plugin_dir() . 'includes/elements/class-custom-child.php';
-		    require_once $this->plugin_dir() . 'includes/elements/class-custom-container.php';
-		    require_once $this->plugin_dir() . 'includes/elements/class-custom-content.php';
-            require_once $this->plugin_dir() . 'includes/elements/class-custom-wrapper.php';
             require_once $this->plugin_dir() . 'includes/elements/class-flipcard.php';
-		    require_once $this->plugin_dir() . 'includes/elements/class-test.php';
-
-		    require_once $this->plugin_dir() . 'includes/shortcodes/shortcode-custom-child.php';
-		    require_once $this->plugin_dir() . 'includes/shortcodes/shortcode-custom-container.php';
-		    require_once $this->plugin_dir() . 'includes/shortcodes/shortcode-custom-content.php';
-            require_once $this->plugin_dir() . 'includes/shortcodes/shortcode-custom-wrapper.php';
             require_once $this->plugin_dir() . 'includes/shortcodes/shortcode-flipcard.php';
-		    require_once $this->plugin_dir() . 'includes/shortcodes/shortcode-test.php';
 	    }
 
 	    /**
@@ -180,7 +169,7 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
 	     * @param $element_manager Tailor_Elements
 	     */
 	    public function register_elements( $element_manager ) {
-            $element_manager->add_element( 'tailor_flipcard', array(
+            $element_manager->add_element( 'tailor_flipcard_qwerty', array(
                 'label'             =>  __( 'Flipcard' ),
                 'description'       =>  __( 'Add a flipcard' ),
                 'badge'             =>  __( 'Intensity' ),
@@ -194,7 +183,7 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
 	     */
 	    public function enqueue_styles() {
 		    wp_enqueue_style(
-			    'tailor-custom-styles',
+			    'tailor-bootstrap-4-styles',
 			    $this->plugin_url() . 'assets/css/frontend' . ( SCRIPT_DEBUG ? '.css' : '.min.css' ),
 			    array(),
 			    $this->version()
@@ -206,8 +195,8 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
 	     */
 	    public function enqueue_scripts() {
 		    wp_enqueue_script(
-			    'tailor-custom-canvas',
-			    $this->plugin_url() . 'assets/js/' . ( SCRIPT_DEBUG ? 'src/canvas/canvas.js' : 'dist/canvas.min.js' ),
+			    'tailor-bootstrap-4-canvas',
+			    $this->plugin_url() . 'assets/js/dist/' . ( SCRIPT_DEBUG ? 'canvas.js' : 'canvas.min.js' ),
 			    array( 'tailor-canvas' ),
 			    $this->version(),
 			    true
@@ -276,12 +265,12 @@ if ( ! class_exists( 'Tailor_Extension' ) ) {
 if ( ! function_exists( 'tailor_extension' ) ) {
 
 	/**
-	 * Returns the Tailor Extension instance.
+	 * Returns the Tailor Bootstrap 4 Extension instance.
 	 *
-	 * @return Tailor_Extension
+	 * @return Tailor_Bootstrap_Extension
 	 */
 	function tailor_extension() {
-		return Tailor_Extension::instance();
+	    return Tailor_Bootstrap_Extension::instance();
 	}
 }
 
@@ -289,3 +278,4 @@ if ( ! function_exists( 'tailor_extension' ) ) {
  * Initializes the Tailor Extension.
  */
 tailor_extension();
+
